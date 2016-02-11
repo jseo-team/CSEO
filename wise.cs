@@ -236,40 +236,37 @@ public class Wise : DynamicObject
 
     }
 
-    public Wise skipOne
+    public Wise slice
     {
         get
         {
-            var w = new Wise(list.Skip(index+1).ToArray());
-	    return w;
+            return new Wise(list.Skip(index+1).ToArray());
         }
     }
 
-    public string takeOne
+    public Wise take(int n)
     {
-        get
-        {
-	    index++;
-            return list[index];
-        }
+	return new Wise(list.Skip(index+1).Take(n).ToArray());
     }
 
+      //todo: module out of this
+    public string str(string code)
+    {
+	//fill-out with this.properties
+	//auto string interpolation
+	//using code {names}
+	return "";
+    }
 
-	public Wise skip(int n)
-	{
-		var w = new Wise(list.Skip(index+n).ToArray());
-		return w;
-	}
+	//todo : module out of this
+    public void sqt(string code, string query)
+    {
+	// fill-in this.properties 
+	// auto string interpolation
+	// from query-in string
+	// using code {names}
+    }
 
-	public string take(int n)
-	{
-		index++;
-		var s = String.Join("", list.Skip(index).Take(n).ToArray());
-		index += n;
-		if (index>=list.Count)
-			index = list.Count-1;
-		return s;
-	}
 
     // TODO 
     public int pus=-1;
@@ -278,29 +275,44 @@ public class Wise : DynamicObject
     public void minus(){}
     // TODO
 
+    public string concat()
+    {
+	var result = this.getter("");
+	dynamic d = this;
 
+	if (this.hasOwnProperty("value"))
+		result += d.value.getter("");
+	return result;
+    }
 
     public override string ToString()
     {
-        return String.Join(",",list.ToArray());
+	return this.concat();
     }
 
-    //TODO
-    public string getter()
+    public string join(string between)
     {
-        return "";
+	return String.Join(between, list.ToArray());
     }
 
-    //TODO
+    public string getter(string stack)
+    {
+        return this.join(",");
+    }
+
     public string setter(string stack)
     {
-        return "";
+	dynamic d = this;
+	if (this.hasOwnProperty("value"))
+	        return d.value.getter(stack);
+	else
+		return "";
     }
 
     public string stack
     {
         get{
-            return getter();
+            return getter("");
         }
         set{
             setter(value);
@@ -339,12 +351,12 @@ public class Wise : DynamicObject
         
       return "cseo.add(" 
 	+ ok.first 
-	+ ok.take(3)
+	+ ok.take(3).join("")
 	+ ok.last 
 	+ ");"
         + "cseo.add("
 	+ ok.first
-	+ ok.skip(3).takeOne
+	+ ok.take(3).next
 	+ "I am a collection" 
         + ok.last
 	+ ");";
@@ -356,10 +368,14 @@ public class Wise : DynamicObject
 
     }
 
-    //TODO
-    public void XML(string script)
+    public string ToJSON()
     {
+	return "";
+    }
 
+    public string ToWON()
+    {
+	return "";
     }
 
 }
