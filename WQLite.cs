@@ -14,10 +14,10 @@ public class WQLite : Wise
 
 public static class WiseBool {
 
-	public static bool knows(this Wise w, string name){}
-	public static bool contains(this Wise w, string text){}
-	public static bool lessThan(this Wise w, string value){}
-	public static bool greaterThan(this Wise w, string value){}
+	public static bool knows(this Wise w, string name){ return false; }
+	public static bool contains(this Wise w, string text){ return false; }
+	public static bool lessThan(this Wise w, string value){ return false; }
+	public static bool greaterThan(this Wise w, string value){ return false; }
 
 }
 
@@ -35,7 +35,7 @@ public static class WiseLang {
 	public static void WQL(this Wise w, string wql){}
 	public static void SQL(this Wise w, string sql){}
 
-	public static Wise that(this Wise w, dotNet.WQLite.condition c, string s){}
+	public static Wise that(this Wise w, dotNet.WQLite.condition c, string s){ return new Wise(new string[]{""}); }
 
 } 
 
