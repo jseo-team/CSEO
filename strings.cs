@@ -22,5 +22,10 @@ namespace dotNet {
             return String.Join(b, s.Split(a.ToCharArray()));
         }
 
+	public static Wise ToWise(this string s)
+	{
+	    return new Wise(s.ToCharArray());
+	}
+
     }
 }

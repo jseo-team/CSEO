@@ -3,7 +3,8 @@ using System.IO; using System.Collections;
 using System.Collections.Generic; using System.Linq; 
 using System.Dynamic; using System.Reflection;
 
-namespace dotNet{
+namespace dotNet
+{
 
 public class Wise : DynamicObject
 {
@@ -21,6 +22,8 @@ public class Wise : DynamicObject
         reloading = defaultLoader;
         indexing = defaultIndexer;
         filtering = defaultFilter;
+
+	index = 0;
     }
 
     public Wise(string[] stack){
@@ -29,6 +32,17 @@ public class Wise : DynamicObject
         filtering = defaultFilter;
 
         list.AddRange(stack);
+	index = 0;
+    }
+
+    public Wise(char[] stack){
+        reloading = defaultLoader;
+        indexing = defaultIndexer;
+        filtering = defaultFilter;
+
+	var e = stack as IEnumerable<char>;
+        list.AddRange(e.Select((o)=>o.ToString()));
+	index = 0;
     }
 
     public Wise(object stack){
@@ -38,7 +52,7 @@ public class Wise : DynamicObject
         filtering = defaultFilter;
 
             Type type = stack.GetType();
-            //FieldInfo[] field = type.GetFields();
+//            FieldInfo[] field = type.GetFields();
             PropertyInfo[] myPropertyInfo = type.GetProperties();
 
             String value = null;
@@ -51,6 +65,7 @@ public class Wise : DynamicObject
                 dictionary.Add(propertyInfo.Name.ToString(), value);
             }
         }
+	index = 0;
     }
 
     public bool hasOwnProperty(string property)
@@ -173,7 +188,7 @@ public class Wise : DynamicObject
         get
         {
             index++;
-            if (index==list.Count)
+            if (index>=list.Count)
                 index=list.Count-1;
             return list[index];
         }
@@ -181,7 +196,7 @@ public class Wise : DynamicObject
         set
         {   
             index++;
-            if (index==list.Count)
+            if (index>=list.Count)
                 index=list.Count-1;
             list[index] = value;
         }
@@ -221,33 +236,46 @@ public class Wise : DynamicObject
 
     }
 
-    public Wise skipCurrent
+    public Wise skipOne
     {
         get
         {
-            return new Wise(list.Skip(index+1).ToArray());
+            var w = new Wise(list.Skip(index+1).ToArray());
+	    return w;
         }
     }
 
-    public Wise takeCurrent
+    public string takeOne
     {
         get
         {
-            return new Wise(list.Take(index+1).ToArray());
+	    index++;
+            return list[index];
         }
     }
 
-    // TODO : PLUS - MINUS
+
+	public Wise skip(int n)
+	{
+		var w = new Wise(list.Skip(index+n).ToArray());
+		return w;
+	}
+
+	public string take(int n)
+	{
+		index++;
+		var s = String.Join("", list.Skip(index).Take(n).ToArray());
+		index += n;
+		if (index>=list.Count)
+			index = list.Count-1;
+		return s;
+	}
+
+    // TODO 
     public int pus=-1;
     public int mus=1;
-
-    public void plus(){
-
-    }
-
-    public void minus(){
-
-    }
+    public void plus(){}
+    public void minus(){}
     // TODO
 
 
@@ -307,8 +335,19 @@ public class Wise : DynamicObject
     //TODO
     public string CSEO(string script)
     {
-      return "cseo.add(\""+ "Hey" +"\");"
-        + "cseo.add(\""+ "I am a collection" +"\");";
+	var ok = "\"Hey \"".ToWise();
+        
+      return "cseo.add(" 
+	+ ok.first 
+	+ ok.take(3)
+	+ ok.last 
+	+ ");"
+        + "cseo.add("
+	+ ok.first
+	+ ok.skip(3).takeOne
+	+ "I am a collection" 
+        + ok.last
+	+ ");";
     }
 
     //TODO

@@ -39,8 +39,8 @@ namespace dotNet{
         {
             Type codeType;
             code = "using System; using System.IO; using dotNet; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net;  using System.Reflection; using Microsoft.CSharp;\n"+
-                " namespace dotNet{ public delegate void indexa(string name, string code);public class Code{public static TwoSine.indexa Index(dynamic cseo, dynamic those){ "+code+" return null; }}} ";
-            return TryCompilerResults(code, "Index", out codeType).Invoke(codeType, new object[]{cseo, those});
+                " namespace dotNet{ public delegate void indexa(string name, string code);public class Code{public static dotNet.indexa Index(dynamic cseo, dynamic those){ "+code+" return null; }}} ";
+            return TryCompilerResults(code, "Index", out codeType).Invoke(codeType, new object[]{dotNet.CSharp.cseo, those});
         }
 
         public static object evalFilter(string code, dynamic those=null)
@@ -48,7 +48,7 @@ namespace dotNet{
             Type codeType;
             code = "using System; using System.IO; using dotNet; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net; using System.Reflection; using Microsoft.CSharp;\n"+
                 " namespace dotNet{ public delegate void filter(string those, string stack, ref String result); public class Code{public static dotNet.filter Filter(dynamic cseo, dynamic those){ "+code+" return null; }}} ";
-            return TryCompilerResults(code, "Filter", out codeType).Invoke(codeType, new object[]{cseo, those});
+            return TryCompilerResults(code, "Filter", out codeType).Invoke(codeType, new object[]{dotNet.CSharp.cseo, those});
         }
 
         public static MethodInfo TryCompilerResults(string code, string method, out Type codeType)
