@@ -1,6 +1,6 @@
 using System;
 
-namespace TwoSine {
+namespace dotNet {
     public static class Strings{
 
         public static string empty = "";

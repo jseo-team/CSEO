@@ -5,16 +5,16 @@ using System.CodeDom.Compiler;
 using System.Text; 
 using System.IO;
 
-namespace TwoSine{
+namespace dotNet{
     
   public delegate string load(string added);
   public delegate void indexa(string name, string code);
   public delegate void filter(string those, string stack, ref String result);
 
-    public class Whole
+    public class CSharp
     {
         
-      public static dynamic cs = new Wise();
+      public static dynamic cseo = new Wise();
       private static CSharpCodeProvider provider = new CSharpCodeProvider();
       private static CompilerParameters parameters = new CompilerParameters();
 
@@ -22,33 +22,33 @@ namespace TwoSine{
       public static object evalObject(string code, string stack="")
       {
             Type codeType;
-            code = "using System; using System.IO; using TwoSine; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net; using System.Reflection; using Microsoft.CSharp;\n"+
-                " namespace TwoSine{ public class Code{public static Object Block(dynamic cs, string stack){ "+code+" return \"\"; }}} ";
-            return TryCompilerResults(code, "Block", out codeType).Invoke(codeType, new object[]{cs, stack});
+            code = "using System; using System.IO; using dotNet; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net; using System.Reflection; using Microsoft.CSharp;\n"+
+                " namespace dotNet{ public class Code{public static Object Block(dynamic cseo, string stack){ "+code+" return \"\"; }}} ";
+            return TryCompilerResults(code, "Block", out codeType).Invoke(codeType, new object[]{dotNet.CSharp.cseo, stack});
       }
 
       public static object evalLoad(string code, dynamic those=null)
       {
             Type codeType;
-            code = "using System; using System.IO; using TwoSine; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net; using System.Reflection; using Microsoft.CSharp;\n"+
-                " namespace TwoSine{ public delegate string load(string added); public class Code{public static TwoSine.load Load(dynamic cs, dynamic those){ "+code+" return null; }}} ";
-            return TryCompilerResults(code, "Load", out codeType).Invoke(codeType, new object[]{cs, those});
+            code = "using System; using System.IO; using dotNet; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net; using System.Reflection; using Microsoft.CSharp;\n"+
+                " namespace dotNet{ public delegate string load(string added); public class Code{public static dotNet.load Load(dynamic cseo, dynamic those){ "+code+" return null; }}} ";
+            return TryCompilerResults(code, "Load", out codeType).Invoke(codeType, new object[]{dotNet.CSharp.cseo, those});
         }
 
         public static object evalIndexa(string code, dynamic those=null)
         {
             Type codeType;
-            code = "using System; using System.IO; using TwoSine; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net;  using System.Reflection; using Microsoft.CSharp;\n"+
-                " namespace TwoSine{ public delegate void indexa(string name, string code);public class Code{public static TwoSine.indexa Index(dynamic cs, dynamic those){ "+code+" return null; }}} ";
-            return TryCompilerResults(code, "Index", out codeType).Invoke(codeType, new object[]{cs, those});
+            code = "using System; using System.IO; using dotNet; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net;  using System.Reflection; using Microsoft.CSharp;\n"+
+                " namespace dotNet{ public delegate void indexa(string name, string code);public class Code{public static TwoSine.indexa Index(dynamic cseo, dynamic those){ "+code+" return null; }}} ";
+            return TryCompilerResults(code, "Index", out codeType).Invoke(codeType, new object[]{cseo, those});
         }
 
         public static object evalFilter(string code, dynamic those=null)
         {
             Type codeType;
-            code = "using System; using System.IO; using TwoSine; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net; using System.Reflection; using Microsoft.CSharp;\n"+
-                " namespace TwoSine{ public delegate void filter(string those, string stack, ref String result); public class Code{public static TwoSine.filter Filter(dynamic cs, dynamic those){ "+code+" return null; }}} ";
-            return TryCompilerResults(code, "Filter", out codeType).Invoke(codeType, new object[]{cs, those});
+            code = "using System; using System.IO; using dotNet; using System.Text; using System.Collections; using System.Collections.Generic; using System.Linq; using System.Web; using System.Dynamic; using System.Net; using System.Reflection; using Microsoft.CSharp;\n"+
+                " namespace dotNet{ public delegate void filter(string those, string stack, ref String result); public class Code{public static dotNet.filter Filter(dynamic cseo, dynamic those){ "+code+" return null; }}} ";
+            return TryCompilerResults(code, "Filter", out codeType).Invoke(codeType, new object[]{cseo, those});
         }
 
         public static MethodInfo TryCompilerResults(string code, string method, out Type codeType)
@@ -66,7 +66,7 @@ namespace TwoSine{
             
 
             Assembly assembly = results.CompiledAssembly;
-            codeType = assembly.GetType("TwoSine.Code");
+            codeType = assembly.GetType("dotNet.Code");
             MethodInfo block = codeType.GetMethod(method);
             return block;
         }
@@ -97,26 +97,26 @@ namespace TwoSine{
                     //cs.module("write","(name, code) => { File.WriteAllBytes(name, Encoding.UTF8.GetBytes(code));}");
                     //cs.module("str","(name, code) => {this.name = code;} ");
                     //cs.module("cson","(name, code) => {} ");
-                    evalLoad(cs.WON(script));                    
+                    evalLoad(cseo.CSEO(script));                    
                 }
                 catch(Exception ex)
                 {
                     Console.WriteLine(ex);
-                    if (cs.hasOwnProperty("onerror"))
-                        cs.onerror(ex);
+                    if (cseo.hasOwnProperty("onerror"))
+                        cseo.onerror(ex);
                 }
 
             }
 
             try
             {
-              Console.WriteLine(cs);
+              Console.WriteLine(cseo);
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex);
-                if (cs.hasOwnProperty("onerror"))
-                    cs["onerror"](ex);
+                if (cseo.hasOwnProperty("onerror"))
+                    cseo["onerror"](ex);
             }
         }
     }
@@ -144,11 +144,5 @@ bwon.token= "(),{}[]+=-*'\"#";bwon.breaker= "(),{}[]+=-*'\"# \t\r\n";
 bwon[-1] = function(){if (swon.stack=="")return ""; swon.name=swon.stack;if (swon.exist[swon.node + "." + swon.name] || swon.name=="module" || swon.name=="loader"){ swon.node += "."+swon.name; return ""; }else {swon.node += "."+swon.name; swon.exist[swon.node]={};return swon.node+"=[];";} };
 var comment = bwon.token.indexOf("#");var quote = function(str){return "'" + str +"'";};var doubleq = function(str){return "\"" + str +"\"";};bwon[comment] = function(){var skip=swon.until("", "\n"); return "";};
 
-Array.prototype.WON = function(wonstr){swon.text=wonstr; var result=""; var ok="";
-for(swon.char=0;swon.char<swon.text.length;swon.char++){
-  if (bwon.breaker.indexOf(swon.here)>-1){
-   if (swon.stack.length>0){result+=bwon[-1](); }
-    swon.stack=""; result+=bwon[bwon.token.indexOf(swon.here)](); 
-    }else swon.stack += swon.here;}  eval(result) };
-
 */
+

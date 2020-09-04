@@ -3,7 +3,7 @@ using System.IO; using System.Collections;
 using System.Collections.Generic; using System.Linq; 
 using System.Dynamic; using System.Reflection;
 
-namespace TwoSine{
+namespace dotNet{
 
 public class Wise : DynamicObject
 {
@@ -38,7 +38,7 @@ public class Wise : DynamicObject
         filtering = defaultFilter;
 
             Type type = stack.GetType();
-            FieldInfo[] field = type.GetFields();
+            //FieldInfo[] field = type.GetFields();
             PropertyInfo[] myPropertyInfo = type.GetProperties();
 
             String value = null;
@@ -305,10 +305,10 @@ public class Wise : DynamicObject
     }
 
     //TODO
-    public string WON(string script)
+    public string CSEO(string script)
     {
-      return "cs.add(\""+ "Hey" +"\");"
-        + "cs.add(\""+ "I am a collection" +"\");";
+      return "cseo.add(\""+ "Hey" +"\");"
+        + "cseo.add(\""+ "I am a collection" +"\");";
     }
 
     //TODO

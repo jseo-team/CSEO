@@ -1,6 +1,12 @@
 //module exports
-module.exports = function () {
-  
+import * as os from "os";
+import * as std from "std";
+
+var loadFile=function(filename){return `'hello'`;};
+var writeFile=function(filename, content){return "";};
+
+var javaScript = function (){
+
 //Array extension
 Array.prototype.index = 0;
 Array.prototype.forEach = function(stack, body){for(var key=0;key<this.length;key++) body.apply(this[key], [stack]);}
@@ -68,3 +74,22 @@ jseo.module("json","this._json.indexer =function(name, code){jseo.JSON('{'+code+
 
 return jseo;
 };
+
+var cSharp = function() {
+
+  this.CSEO = function(s){
+     //return dotNet.CSEO(s);
+  };
+
+  this.eval = function(s){
+     //return dotNet.eval(s);
+  };
+};
+
+var script = new javaScript();
+var cmdLine = [""];
+
+for (var n=0;n<cmdLine.length;n++)
+script.JSEO(loadFile(cmdLine[n]));
+
+console.log(script.toString());
