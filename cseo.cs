@@ -94,9 +94,25 @@ namespace dotNet{
                     
 
                     //cs.loader("load", "Encoding.UTF8.GetString(File.ReadAllBytes(added));");
+		    //cs.module("save" ... )
+		    //cs.loader("read" ...
                     //cs.module("write","(name, code) => { File.WriteAllBytes(name, Encoding.UTF8.GetBytes(code));}");
                     //cs.module("str","(name, code) => {this.name = code;} ");
-                    //cs.module("cson","(name, code) => {} ");
+                    //cs.module("sqt","(name, code) => {} ");
+
+		    //::protocol::
+		    //connect, serve	
+                    //ask, find
+                    //msg, state
+
+		    // :: compat ::
+		    //xml wql sql that
+
+		    // :: media ::
+		    // download, upload
+		    // play pause generate
+		    // compress extract convert
+
                     evalLoad(cseo.CSEO(script));                    
                 }
                 catch(Exception ex)

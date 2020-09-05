@@ -30,7 +30,7 @@ public static class Dyper
 	// call within triggers when received
 	// concat send() and header()
 	// then transfer response
-	public static void search(this Wise w, string query){ }
+	public static void find(this Wise w, string query){ }
 
 
 }
