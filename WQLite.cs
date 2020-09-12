@@ -16,8 +16,8 @@ public static class WiseBool {
 
 	public static bool knows(this Wise w, string name){ return false; }
 	public static bool contains(this Wise w, string text){ return false; }
-	public static bool lessThan(this Wise w, string value){ return false; }
-	public static bool greaterThan(this Wise w, string value){ return false; }
+	public static bool lessExists(this Wise w, string value){ return false; }
+	public static bool greaterExists(this Wise w, string value){ return false; }
 
 }
 
