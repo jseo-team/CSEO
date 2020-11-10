@@ -336,7 +336,6 @@ public class Wise : DynamicObject
         dictionary[name] = newModule;
     }
 public static string empty="";
-public static string notice="{cseo script v0.0c - https://jseo-team.github.io }";
 public static dynamic sys;
 public static Dictionary<string,Func<string>> parsing;
  
@@ -346,8 +345,6 @@ public static void initParsing(string script)
     sys.text=script;
     sys.chr=0;
     sys.stack="";
-    
-    //todo test it
     
     sys.until=(Func<string,string,string>)((a,b)=>{
         var level=0; var result = "";
@@ -399,7 +396,7 @@ public static void initParsing(string script)
 //TODO
     public string CSEO(string script)
     {
-        initParsing(notice);
+        initParsing(script);
         var code = sys.until("{","}");
         Console.WriteLine(code);
         var result= new List<string>{ $"cseo._start=\"starting...\";cseo.add(cseo._start.ToString());" };

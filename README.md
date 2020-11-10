@@ -1,2 +1,2 @@
-# JSEO
-javascript entrypoint oriented
+# CSEO
+c# entrypoint oriented
