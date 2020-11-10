@@ -246,11 +246,11 @@ public class Wise : DynamicObject
 
     public Wise take(int n)
     {
-	return new Wise(list.Skip(index+1).Take(n).ToArray());
+	    return new Wise(list.Skip(index+1).Take(n).ToArray());
     }
 
       //todo: module out of this
-    public string str(string code)
+    public string interpolate(string code)
     {
 	//fill-out with this.properties
 	//auto string interpolation
@@ -259,7 +259,7 @@ public class Wise : DynamicObject
     }
 
 	//todo : module out of this
-    public void sqt(string code, string query)
+    public void extrapolate(string code, string query)
     {
 	// fill-in this.properties 
 	// auto string interpolation
@@ -275,19 +275,11 @@ public class Wise : DynamicObject
     public void minus(){}
     // TODO
 
-    public string concat()
-    {
-	var result = this.getter("");
-	dynamic d = this;
-
-	if (this.hasOwnProperty("value"))
-		result += d.value.getter("");
-	return result;
-    }
+    
 
     public override string ToString()
     {
-	return this.concat();
+	    return this.getter("");
     }
 
     public string join(string between)
@@ -297,16 +289,16 @@ public class Wise : DynamicObject
 
     public string getter(string stack)
     {
-        return this.join(",");
+        return this.join("");
     }
 
     public string setter(string stack)
     {
-	dynamic d = this;
-	if (this.hasOwnProperty("value"))
+	    dynamic d = this;
+	    if (this.hasOwnProperty("value"))
 	        return d.value.getter(stack);
-	else
-		return "";
+	    else
+		    return "";
     }
 
     public string stack
@@ -327,7 +319,7 @@ public class Wise : DynamicObject
     public void loader(string name, string code)
     {
     
-            Wise newLoader = dictionary[name] as Wise;
+        Wise newLoader = dictionary[name] as Wise;
         if (newLoader==null) newLoader = new Wise();
 
         newLoader.setLoading(code);
@@ -343,23 +335,75 @@ public class Wise : DynamicObject
         newModule.setIndexing(code);
         dictionary[name] = newModule;
     }
+public static string empty="";
+public static string notice="{cseo script v0.0c - https://jseo-team.github.io }";
+public static dynamic sys;
+public static Dictionary<string,Func<string>> parsing;
+ 
+public static void initParsing(string script)
+{
+    sys = new Wise();
+    sys.text=script;
+    sys.chr=0;
+    sys.stack="";
+    
+    //todo test it
+    
+    sys.until=(Func<string,string,string>)((a,b)=>{
+        var level=0; var result = "";
+          for(sys.chr++;sys.chr<sys.stop();sys.chr++){ 
+              if ((sys.here())==b){if (level<=0) return result; else level--;}
+              result += sys.here(); if ((sys.here())==a){level++;}}return empty;});
+    
+    sys.name="";
+    sys.root="cseo"; sys.node="cseo";
+    sys.exist=new Dictionary<string,object>();
+    sys.rootStack=new List<string>{"cseo"};
+    sys.here=(Func<string>)(()=>{return Char.ToString(sys.text[sys.chr]);});
+    sys.stop=(Func<int>)(()=>{return sys.text.Length;});
+    
+ 
+    parsing = new Dictionary<string,Func<string>>();
+ 
+    parsing.Add("",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("(",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add(")",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add(",",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("{",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("}",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("[",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("]",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("+",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("-",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("=",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("*",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("'",(Func<string>)(()=>
+    {return "";}));
+    parsing.Add("\"",(Func<string>)(()=>
+    {return "";}));
 
-    //TODO
+}
+
+//TODO
     public string CSEO(string script)
     {
-	var ok = "\"Hey \"".ToWise();
-        
-      return "cseo.add(" 
-	+ ok.first 
-	+ ok.take(3).join("")
-	+ ok.last 
-	+ ");"
-        + "cseo.add("
-	+ ok.first
-	+ ok.take(3).next
-	+ "I am a collection" 
-        + ok.last
-	+ ");";
+        initParsing(notice);
+        var code = sys.until("{","}");
+        Console.WriteLine(code);
+        var result= new List<string>{ $"cseo._start=\"starting...\";cseo.add(cseo._start.ToString());" };
+	return string.Join("",result);
     }
 
     //TODO

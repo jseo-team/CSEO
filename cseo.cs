@@ -2,6 +2,8 @@ using System;
 using System.Reflection; 
 using Microsoft.CSharp; 
 using System.CodeDom.Compiler; 
+using System.Collections;
+using System.Collections.Generic;
 using System.Text; 
 using System.IO;
 
@@ -70,16 +72,22 @@ namespace dotNet{
             MethodInfo block = codeType.GetMethod(method);
             return block;
         }
+        
+        public static List<string> ReferenceAssembly =new List<string>{
+          "System.Core.dll",
+          "Microsoft.CSharp.dll",
+          "System.Drawing.dll",
+           "System.Web.dll",
+           "System.Net.dll"
+        };
 
         public static void CreateReferences()
         {
             parameters.GenerateInMemory = true;
             parameters.GenerateExecutable = false;
-            parameters.ReferencedAssemblies.Add("System.Core.dll");
-            parameters.ReferencedAssemblies.Add("Microsoft.CSharp.dll");
-            parameters.ReferencedAssemblies.Add("System.Drawing.dll");
-            parameters.ReferencedAssemblies.Add("System.Web.dll");
-            parameters.ReferencedAssemblies.Add("System.Net.dll");
+            foreach(var asm in ReferenceAssembly)
+            parameters.ReferencedAssemblies.Add(asm);
+            
         }
 
         public static void Main(string [] arguments)
