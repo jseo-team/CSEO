@@ -399,7 +399,7 @@ public static void initParsing(string script)
         initParsing(script);
         var code = sys.until("{","}");
         Console.WriteLine(code);
-        var result= new List<string>{ $"cseo._start=\"starting...\";cseo.add(cseo._start.ToString());" };
+        var result= new List<string>{ $"cseo._start=\"starting...\";Console.WriteLine(cseo._start.ToString());" };
 	return string.Join("",result);
     }
 
